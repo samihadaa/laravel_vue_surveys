@@ -74,12 +74,33 @@
             <router-link
                 :to="{ name: 'Register' }"
                 class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-                >login to your account</router-link
+                >Register for a new account</router-link
             >
         </p>
     </div>
 </template>
 
-<script></script>
+<script setup>
+
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+const router = useRouter();
+const store = useStore();
+
+const user = {
+    email:'',
+    password:'',
+    remember:false
+};
+
+const login = (()=> {
+store.dispatch('login', user)
+.then((res)=> {
+    router.push({name:'Dashboard'});
+});
+});
+
+</script>
 
 <style></style>

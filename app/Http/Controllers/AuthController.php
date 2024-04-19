@@ -24,11 +24,11 @@ class AuthController extends Controller
 
        $token = $user->createToken('main')->plainTextToken;
 
-        return response()->json([
+        return response([
             'user' => $user,
-            'token' =>$token
+            'token' =>$token,
+            'status' => 201
         ]);
-
     }
     public function login(Request $request){
         $credentials = $request->validate([
@@ -41,14 +41,15 @@ class AuthController extends Controller
         if (!Auth::attempt($credentials, $remember)) {
            return response()->json([
             'message' => 'Bad Credentials',
-            'status' => '422'
+            'status' => 422
            ]);
         }
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
         return response()->json([
             'user' => $user,
-            'token' =>$token
+            'token' =>$token,
+            'status' => 200
         ]);
     }
 }

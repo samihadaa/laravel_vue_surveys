@@ -42,7 +42,7 @@
                                         >
                                         <img
                                             class="h-8 w-8 rounded-full"
-                                            :src="user.imageUrl"
+                                            src=""
                                             alt=""
                                         />
                                     </MenuButton>
@@ -116,7 +116,7 @@
                         <div class="flex-shrink-0">
                             <img
                                 class="h-10 w-10 rounded-full"
-                                :src="user.imageUrl"
+                                src=""
                                 alt=""
                             />
                         </div>
@@ -149,7 +149,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
@@ -165,8 +165,7 @@ import {
     MenuItems,
 } from "@headlessui/vue";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
-
-const user = computed(()=>store.state.user.data)
+ const user = computed(()=>store.state.user.data)
 const navigation = [
     { name: "Dashboard", to: "{name:Dashboard}" },
     { name: "Survey", to: "{name:Survey}" },
@@ -177,4 +176,7 @@ const logout = (()=>{
   router.push({name:'Login'});
 });
 
+onMounted(() => {
+    console.log('user :', user)
+})
 </script>

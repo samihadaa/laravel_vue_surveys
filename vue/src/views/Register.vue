@@ -12,7 +12,7 @@
                 Sign up a new account
             </h2>
         </div>
-        <form class="space-y-6" action="#" method="POST">
+        <form class="space-y-6" @submit.prevent="register">
             <div>
                 <label
                     for="fullName"
@@ -22,6 +22,7 @@
                 <div class="mt-2">
                     <input
                         id="fullName"
+                        v-model.trim="user.name"
                         name="fullName"
                         type="text"
                         autocomplete="fullName"
@@ -39,6 +40,7 @@
                 <div class="mt-2">
                     <input
                         id="email"
+                        v-model.trim="user.email"
                         name="email"
                         type="email"
                         autocomplete="email"
@@ -66,10 +68,27 @@
                 <div class="mt-2">
                     <input
                         id="password"
+                        v-model.trim="user.password"
                         name="password"
                         type="password"
                         autocomplete="current-password"
                         placeholder="password"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                </div>
+                <label
+                        for="password"
+                        class="block text-sm font-medium leading-6 text-gray-900"
+                        >Password</label
+                    >
+                    <div class="mt-2">
+                    <input
+                        id="password_confirmation"
+                        v-model.trim="user.password_confirmation"
+                        name="password_confirmation"
+                        type="password"
+                        autocomplete="current-password"
+                        placeholder="confirm password"
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
@@ -97,6 +116,27 @@
     </div>
 </template>
 
-<script></script>
+<script setup>
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+const router = useRouter();
+const store = useStore();
+
+const user = {
+    name:'',
+    email:'',
+    password:'',
+    password_confirmation: ''
+}
+
+const register = (()=>{
+    store.dispatch('register', user)
+    .then((res)=>{
+    router.push({name:'Dashboard'});
+});
+});
+
+</script>
 
 <style></style>

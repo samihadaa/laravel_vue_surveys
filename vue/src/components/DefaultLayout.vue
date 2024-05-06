@@ -177,6 +177,5 @@ const logout = (()=>{
 });
 
 onMounted(() => {
-    console.log('user :', user)
 })
 </script>

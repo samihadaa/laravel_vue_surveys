@@ -12,7 +12,29 @@
                 Sign in to your account
             </h2>
         </div>
-        <form class="space-y-6" action="#" method="POST">
+        <form class="space-y-6" @submit.prevent="login" novalidate>
+            <div
+                v-if="errorMessage"
+                class="flex justify-between items-center px-5 py-3 bg-red-500 text-white rounded"
+            >
+                {{ errorMessage }}
+                <span @click="errorMessage = ''" class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M6 18 18 6M6 6l12 12"
+                        />
+                    </svg>
+                </span>
+            </div>
             <div>
                 <label
                     for="email"
@@ -24,6 +46,8 @@
                         id="email"
                         name="email"
                         type="email"
+                        :novalidate="true"
+                        v-model="user.email"
                         autocomplete="email"
                         placeholder="email adress"
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -51,13 +75,30 @@
                         id="password"
                         name="password"
                         type="password"
+                        v-model="user.password"
                         autocomplete="current-password"
                         placeholder="password"
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
             </div>
-
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input
+                        type="checkbox"
+                        id="remember-me"
+                        name="remember-me"
+                        v-model="user.remember"
+                        class="h4 w-4 text-indigi-600 focus:ring-indigo-500 border-gray-300 rounded"
+                    />
+                    <label
+                        for="remember-me"
+                        class="ml-2 block text-sm text-gray-900"
+                    >
+                        Remember me
+                    </label>
+                </div>
+            </div>
             <div>
                 <button
                     type="submit"
@@ -81,26 +122,30 @@
 </template>
 
 <script setup>
-
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { ref } from "vue";
+import * as yup from "yup";
 
 const router = useRouter();
 const store = useStore();
-
+const errorMessage = ref("");
 const user = {
-    email:'',
-    password:'',
-    remember:false
+    email: "",
+    password: "",
+    remember: false,
 };
 
-const login = (()=> {
-store.dispatch('login', user)
-.then((res)=> {
-    router.push({name:'Dashboard'});
-});
-});
-
+const login = (values) => {
+    store
+        .dispatch("login", user)
+        .then((res) => {
+            router.push({ name: "Dashboard" });
+        })
+        .catch((error) => {
+            errorMessage.value = error.response.data.message;
+        });
+};
 </script>
 
 <style></style>

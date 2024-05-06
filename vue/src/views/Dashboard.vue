@@ -1,11 +1,13 @@
 <template>
-    <PageComponent title="Dashboard">Dashboard Content</PageComponent>
+    <PageComponent>
+        <template v-slot:header>
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard Content</h1>
+        </template>
+    </PageComponent>
 </template>
 
 <script setup>
-
-import PageComponent from '../components/PageComponent.vue';
-
+import PageComponent from "../components/PageComponent.vue";
 </script>
 
 <style></style>

@@ -10,9 +10,9 @@ const tmpSurveys = [
         image: "https://www.cloudways.com/blog/wp-content/uploads/Laravel-9.jpg",
         description:
             "Laravel is one of the best frameworks that you can use in 2024",
-        created_at: "2024-02-01 18:00:00",
-        updated_at: "2024-02-01 18:00:00",
-        expire_date: "2024-03-01 18:00:00",
+        created_at: "2024-02-01",
+        updated_at: "2024-02-01",
+        expire_date: "2024-03-01",
         questions: [
             {
                 id: 111,
@@ -143,9 +143,9 @@ const tmpSurveys = [
         image: "https://segwitz.com/wp-content/uploads/2021/06/vuejs-development-malaysia.jpeg",
         description:
             "VueJs is one of the best frameworks that you can use in 2024",
-        created_at: "2024-02-01 18:00:00",
-        updated_at: "2024-02-01 18:00:00",
-        expire_date: "2024-03-01 18:00:00",
+        created_at: "2024-02-01",
+        updated_at: "2024-02-01",
+        expire_date: "2024-03-01",
         questions: [
             {
                 id: 8,
@@ -276,9 +276,9 @@ const tmpSurveys = [
         image: "https://tailwindcss.com/_next/static/media/card.a1cd9cff.jpg",
         description:
             "Tailwind is one of the best frameworks that you can use in 2024",
-        created_at: "2024-02-01 18:00:00",
-        updated_at: "2024-02-01 18:00:00",
-        expire_date: "2024-03-01 18:00:00",
+        created_at: "2024-02-01",
+        updated_at: "2024-02-01",
+        expire_date: "2024-03-01",
         questions: [
             {
                 id: 20,

@@ -96,6 +96,11 @@ import store from "../store/index.js";
 import { computed } from "vue";
 
 const surveys = computed(() => store.state.surveys);
+
+const deleteSurvey = (survey) => {
+    console.log("survey :", survey);
+    //todo: delete survey
+};
 </script>
 
 <style></style>

@@ -122,14 +122,14 @@ const tmpSurveys = [
             {
                 id: 6,
                 type: "text",
-                text: "what is your most fulfill in life",
+                question: "what is your most fulfill in life",
                 description: null,
                 data: {},
             },
             {
                 id: 7,
                 type: "textarea",
-                text: "what you think about IA ?",
+                question: "what you think about IA ?",
                 description: "rite your opinion in short description",
                 data: {},
             },
@@ -410,6 +410,7 @@ const store = createStore({
             data: {},
             token: sessionStorage.getItem("TOKEN"),
         },
+        questionTypes: ["text", "select", "textarea", "radio", "checkbox"],
     },
     getters: {},
     mutations: {

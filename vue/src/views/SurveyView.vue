@@ -160,7 +160,6 @@
                                 You don't have any questions created
                             </div>
                             <div
-                                v-else
                                 v-for="(
                                     question, index
                                 ) in modelSurvey.questions"
